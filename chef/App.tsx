@@ -1,12 +1,13 @@
-import React from 'react';
-import { View, Text, StatusBar } from 'react-native';
-import styles from './AppStyles';
+import React from "react";
+import { View, Text} from "react-native";
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Ultifood</Text>
-      <StatusBar barStyle="light-content" />
+    <View className="flex-1 bg-slate-900 items-center justify-center">
+      <Text className="text-white text-center text-4xl font-bold">
+        Ultifood
+      </Text>
+      <Text className="text-white text-center text-lg">Subtitle</Text>
     </View>
   );
 }
