@@ -5,7 +5,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { Header, Loading, ThemeToggle } from "./components/home";
 import styles from './AppStyles';
 
-const textArray = ['Hi', 'Hello', 'Hii'];
+const textArray = ['Synthesizing Proteins', 'Burning Calories', 'Building Muscle'];
 
 export default function App() {
   const { colorScheme, setColorScheme } = useColorScheme();
