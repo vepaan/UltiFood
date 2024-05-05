@@ -7,13 +7,11 @@ export default function App() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const setVisibility = async (visibility:'visible' | 'hidden') => {
-      await NavigationBar.setVisibilityAsync(visibility)
-    };
-    setVisibility('hidden');
+    NavigationBar.setBackgroundColorAsync("#111827");
+    NavigationBar.setVisibilityAsync("hidden")
     const timer = setTimeout(() => {
       setLoading(false);
-      setVisibility('visible');
+      NavigationBar.setBehaviorAsync("inset-swipe")
     }, 6000);
     return () => clearTimeout(timer);
   }, []);
