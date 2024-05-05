@@ -6,7 +6,7 @@ import { Header, Loading, ThemeToggle } from "./components/home";
 import styles from './AppStyles';
 import * as NavigationBar from 'expo-navigation-bar';
 
-const textArray = ['Synthesizing Proteins', 'Burning Calories', 'Building Muscle'];
+const textArray = [];
 
 export default function App() {
   const { colorScheme, setColorScheme } = useColorScheme();
@@ -21,7 +21,7 @@ export default function App() {
     NavigationBar.setVisibilityAsync("hidden");
     const timer = setTimeout(() => {
       setLoading(false);
-    }, 10000);
+    }, 8000);
     NavigationBar.setBehaviorAsync("inset-swipe")
     return () => clearTimeout(timer);
   }, []);
