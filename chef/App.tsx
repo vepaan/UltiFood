@@ -11,13 +11,11 @@ export default function App() {
   useEffect(() => {
     // Hide logo and start other shit after 6 seconds
     const timer = setTimeout(() => {
-      setLoading(false);
-    }, 6000);
-    return () => clearTimeout(timer);
-  }, []); // Run only once on component mount
+      setLoading(false);}, 6000);
+      return () => clearTimeout(timer);}, []); // Run only once on component mount. No dependecy array for now
 
   return loading ? ( // Display the logo only when loading is true
-    <View className="flex-1 bg-gray-400 items-center justify-center">
+    <View className="flex-1 bg-[#ffaa59] items-center justify-center">
       <Image source={require("./assets/logo.png")} style={styles.logo} />
     </View>
   ) : (
