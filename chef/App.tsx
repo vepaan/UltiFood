@@ -1,11 +1,11 @@
 import React, { useState, useEffect, useRef } from "react";
-import { SafeAreaView } from "react-native-safe-area-context";
+import { View, Text, Image, Pressable, Animated, Easing } from "react-native";
+import { useColorScheme } from "nativewind";
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { Header, Loading, ThemeToggle } from "./components/home";
 import styles from './AppStyles';
-import * as NavigationBar from 'expo-navigation-bar';
 
-
-const textArray = ['Burning Calories', 'Synthesizing Proteins', 'Building Muscle']
+const textArray = ['Hi', 'Hello', 'Hii'];
 
 export default function App() {
   const { colorScheme, setColorScheme } = useColorScheme();
@@ -16,26 +16,61 @@ export default function App() {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
-    NavigationBar.setBackgroundColorAsync("#111827");
-    NavigationBar.setVisibilityAsync("hidden")
     const timer = setTimeout(() => {
       setLoading(false);
-      NavigationBar.setBehaviorAsync("inset-swipe")
-    }, 6000);
+    }, 10000);
     return () => clearTimeout(timer);
   }, []);
 
+  useEffect(() => {
+    if (loading) {
+      startSpinAnimation();
+      startTextLoading();
+    }
+  }, []);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const currentIndex = Math.floor((new Date().getTime() / 1000) % textArray.length);
+      const text = textArray[currentIndex];
+      setDisplayText(text);
+    }, 1000); // Update text every 1 second
+  
+    return () => clearInterval(interval);
+  }, []); // Run once on component mount
+  
+
+  const startSpinAnimation = () => {
+    Animated.loop(
+      Animated.sequence([
+        Animated.timing(spinValue, { toValue: 1, duration: 1400, easing: Easing.linear, useNativeDriver: true, }),
+        Animated.delay(900),
+        Animated.timing(spinValue, { toValue: 0, duration: 0, useNativeDriver: true, })
+      ])
+    ).start();
+  };
+
+  const startTextLoading = () => {
+    const interval = setInterval(() => {
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % textArray.length);
+    }, 1200);
+    return () => clearInterval(interval);
+  };
+
+  const spin = spinValue.interpolate({
+    inputRange: [0, 1],
+    outputRange: ["0deg", "720deg"],
+  });
+
   return loading ? (
-    <Loading>
     <View style={{ flex: 1, backgroundColor: "#ffaa59", alignItems: "center", justifyContent: "center" }}>
       <Animated.Image
         source={require("./assets/logo.png")}
         style={[styles.logo, { transform: [{ translateX: -10 }, { translateY: -0 }, { rotate: spin }, { translateX: 10 }, { translateY: 0 }] }]}
       />
       <Image source={require("./assets/logotext.png")} style={styles.logotext}></Image>
-      <Text style={{ color: '#000', fontSize: 30, fontFamily:'sans', marginTop: 20 }}>{displayText}{dots}</Text>
+      <Text style={{ color: '#000', fontSize: 30, marginTop: 20 }}>{displayText}{dots}</Text>
     </View>
-    <Loading />
   ) : (
     <SafeAreaView className="flex-1 bg-gray-300 dark:bg-gray-900 items-center justify-center">
       <ThemeToggle />
