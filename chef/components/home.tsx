@@ -18,7 +18,7 @@ function Header() {
 
 function Loading(){
     return (
-        <View className="flex-1 bg-gray-400 items-center justify-center">
+        <View className="flex-1 bg-[#ffaa59] items-center justify-center">
             <Image source={require("../assets/logo.png")} style={styles.logo} />
         </View>
     )
