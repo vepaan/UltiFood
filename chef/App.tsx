@@ -14,7 +14,7 @@ export default function App() {
     return () => clearTimeout(timer);}, []); // Run only once on component mount
 
   return (
-    <View className="flex-1 bg-slate-900 items-center justify-center">
+    <View className={`flex-1 items-center justify-center ${loading ? 'bg-[#ffaa59]' : 'bg-slate-900'}`}>
       {loading ? ( // Display the logo only when loading is true
         <Image source={require('./assets/logo.png')} style={styles.logo} />
       ) : (
