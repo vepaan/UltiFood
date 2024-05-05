@@ -4,6 +4,7 @@ import { useColorScheme } from "nativewind";
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Header, Loading, ThemeToggle } from "./components/home";
 import styles from './AppStyles';
+import * as NavigationBar from 'expo-navigation-bar';
 
 const textArray = ['Hi', 'Hello', 'Hii'];
 
@@ -16,9 +17,12 @@ export default function App() {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
+    NavigationBar.setBackgroundColorAsync("#111827");
+    NavigationBar.setVisibilityAsync("hidden");
     const timer = setTimeout(() => {
       setLoading(false);
     }, 10000);
+    NavigationBar.setBehaviorAsync("inset-swipe")
     return () => clearTimeout(timer);
   }, []);
 
