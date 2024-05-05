@@ -1,9 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
-import { View, Text, Image, Pressable, Animated, Easing } from "react-native";
-import { useColorScheme } from "nativewind";
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { SafeAreaView } from "react-native-safe-area-context";
 import { Header, Loading, ThemeToggle } from "./components/home";
 import styles from './AppStyles';
+import * as NavigationBar from 'expo-navigation-bar';
 
 
 const textArray = ['Burning Calories', 'Synthesizing Proteins', 'Building Muscle']
@@ -17,43 +16,17 @@ export default function App() {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
+    NavigationBar.setBackgroundColorAsync("#111827");
+    NavigationBar.setVisibilityAsync("hidden")
     const timer = setTimeout(() => {
-      setLoading(false);}, 6000);
-      return () => clearTimeout(timer);}, []);
-
-  useEffect(() => {
-    if (loading) {
-      startSpinAnimation();
-    }
-  }, []); // Re-trigger effect when loading state changes
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      const currentIndex = Math.floor((new Date().getTime() / 1000) % textArray.length);
-      const text = textArray[currentIndex];
-      setDisplayText(text);
-    }, 1000); // Update text every 1 second
-  
-    return () => clearInterval(interval);
-  }, []); // Run once on component mount
-  
-
-  const startSpinAnimation = () => {
-    Animated.loop(
-      Animated.sequence([
-        Animated.timing(spinValue, { toValue: 1, duration: 1400, easing: Easing.linear, useNativeDriver: true, }),
-        Animated.delay(900),
-        Animated.timing(spinValue, { toValue: 0, duration: 0, useNativeDriver: true, })
-      ])
-    ).start();
-  };
-
-  const spin = spinValue.interpolate({
-    inputRange: [0, 1],
-    outputRange: ["0deg", "720deg"],
-  });
+      setLoading(false);
+      NavigationBar.setBehaviorAsync("inset-swipe")
+    }, 6000);
+    return () => clearTimeout(timer);
+  }, []);
 
   return loading ? (
+    <Loading>
     <View style={{ flex: 1, backgroundColor: "#ffaa59", alignItems: "center", justifyContent: "center" }}>
       <Animated.Image
         source={require("./assets/logo.png")}
@@ -62,6 +35,7 @@ export default function App() {
       <Image source={require("./assets/logotext.png")} style={styles.logotext}></Image>
       <Text style={{ color: '#000', fontSize: 30, fontFamily:'sans', marginTop: 20 }}>{displayText}{dots}</Text>
     </View>
+    <Loading />
   ) : (
     <SafeAreaView className="flex-1 bg-gray-300 dark:bg-gray-900 items-center justify-center">
       <ThemeToggle />
