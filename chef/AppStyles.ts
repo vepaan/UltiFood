@@ -17,6 +17,14 @@ const styles = StyleSheet.create({
     position: 'absolute',
     width: '60%',
     resizeMode: 'contain',
+  },
+  loadingtext: {
+    position: 'absolute',
+    //fontFamily: 'Staatliches-Regular',
+    color: '#000',
+    top: '70%',
+    fontSize: 20,
+    resizeMode: 'contain',
   }
 });
 
