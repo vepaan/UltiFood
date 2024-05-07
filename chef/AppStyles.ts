@@ -8,13 +8,12 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   logo: {
-    position: 'absolute',
+    top: '50%',
     width: '55%',
     resizeMode: 'contain',
   },
   logotext: {
-    top: '17%',
-    position: 'absolute',
+    top: -177,
     width: '60%',
     resizeMode: 'contain',
   },
