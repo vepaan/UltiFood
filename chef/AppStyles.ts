@@ -8,8 +8,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   logo: {
-    top: '50%',
-    width: '55%',
+    top: 436.5,
+    width: 215,
     resizeMode: 'contain',
   },
   logotext: {
