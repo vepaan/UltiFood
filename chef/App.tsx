@@ -18,7 +18,7 @@ export default function App() {
   const [displayText, setDisplayText] = useState('');
   const [dots, setDots] = useState('');
   const [currentIndex, setCurrentIndex] = useState(0);
-
+  const scaleValue = useRef(new Animated.Value(1)).current;
   const [fontLoaded, setFontLoaded] = useState(false);
 
   useEffect(() => {
@@ -38,7 +38,7 @@ export default function App() {
     NavigationBar.setVisibilityAsync("hidden");
     const timer = setTimeout(() => {
       setLoading(false);
-    }, 8000);
+    }, 6900+900 );
     NavigationBar.setBehaviorAsync("inset-swipe")
     return () => clearTimeout(timer);
   }, []);
@@ -62,14 +62,25 @@ export default function App() {
   
 
   const startSpinAnimation = () => {
-    Animated.loop(
-      Animated.sequence([
-        Animated.timing(spinValue, { toValue: 1, duration: 1400, easing: Easing.linear, useNativeDriver: true, }),
-        Animated.delay(900),
-        Animated.timing(spinValue, { toValue: 0, duration: 0, useNativeDriver: true, })
-      ])
-    ).start();
+    const spinAnimation = Animated.timing(spinValue, { toValue: 1, duration: 1400, easing: Easing.linear, useNativeDriver: true });
+    const resetSpinAnimation = Animated.timing(spinValue, { toValue: 0, duration: 0, useNativeDriver: true });
+    const spinSequence = Animated.sequence([spinAnimation, resetSpinAnimation]);
+    const zoomanimation = Animated.timing(scaleValue, { toValue: 600, duration: 2000, easing: Easing.linear, useNativeDriver: true });
+
+    const loopedSpinAnimation = Animated.loop(
+      Animated.sequence([spinSequence, Animated.delay(900),]),{ iterations: 3 }
+    );
+
+
+    const zoom = Animated.loop(
+      Animated.parallel([zoomanimation]),
+    )
+  
+    Animated.sequence([loopedSpinAnimation, zoom])
+    .start();
   };
+  
+  
 
   const startTextLoading = () => {
     const interval = setInterval(() => {
@@ -83,11 +94,17 @@ export default function App() {
     outputRange: ["0deg", "720deg"],
   });
 
+  const scale = scaleValue.interpolate({
+    inputRange: [1, 600],
+    outputRange: [1, 600], 
+  });
+  
+
   return loading ? (
     <View style={{ flex: 1, backgroundColor: "#ffaa59", alignItems: "center", justifyContent: "center" }}>
       <Animated.Image
         source={require("./assets/logo.png")}
-        style={[styles.logo, { transform: [{ translateX: -10 }, { translateY: -0 }, { rotate: spin }, { translateX: 10 }, { translateY: 0 }] }]}
+        style={[styles.logo, { transform: [{ translateX: -10 }, { translateY: -0 }, { rotate: spin }, { translateX: 10 }, { scaleX: scale }, { scaleY: scale }, { translateY: 0 }] }]}
       />
       <Image source={require("./assets/logotext.png")} style={styles.logotext}></Image>
       <Text style={styles.loadingtext}>{displayText}{dots}</Text>
