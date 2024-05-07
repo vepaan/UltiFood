@@ -64,14 +64,22 @@ function Scanner() {
         setExtractedText(result["all_text"]); 
         // Save the extracted text to a file
         await saveTextToFile(result["all_text"]);
+        //? Testing 
+        console.log(result["all_text"]);
       }) 
       .catch((error) => console.log("error", error)); 
   }; 
 
   // Function to save text to a file
   const saveTextToFile = async (text) => {
-    const fileUri = `.\components\food_label_details.txt`;
+    const directory = `${FileSystem.documentDirectory}components`;
+    const fileUri = `${directory}/food_label_details.txt`;
+
     try {
+      // Ensure the directory exists
+      await FileSystem.makeDirectoryAsync(directory, { intermediates: true });
+
+      // Write to the file
       await FileSystem.writeAsStringAsync(fileUri, text);
       console.log("Text saved to file successfully");
     } catch (error) {
