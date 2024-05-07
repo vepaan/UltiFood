@@ -37,11 +37,11 @@ export default function App() {
     NavigationBar.setBackgroundColorAsync("#111827");
     NavigationBar.setVisibilityAsync("hidden");
     const timer = setTimeout(() => {
-      setLoading(loading+1);
-    }, );
+      setLoading(false);
+    }, 8000);
     NavigationBar.setBehaviorAsync("inset-swipe")
     return () => clearTimeout(timer);
-  }, [loading]);
+  }, []);
 
   useEffect(() => {
     if (loading) {
@@ -80,7 +80,7 @@ export default function App() {
 
   const spin = spinValue.interpolate({
     inputRange: [0, 1],
-    outputRange: ["0deg", "0deg"],
+    outputRange: ["0deg", "720deg"],
   });
 
   return loading ? (
