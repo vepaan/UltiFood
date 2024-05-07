@@ -6,6 +6,7 @@ import { Header, Loading, ThemeToggle } from "./components/home";
 import styles from './AppStyles';
 import * as NavigationBar from 'expo-navigation-bar';
 import * as Font from 'expo-font'; 
+import { Scanner } from "./components/scanner";
 
 //const textArray = ['Burning Calories','Synthesizing Proteins','Improving Nutrition', 'Optimizing Diet'];
 const textArray = [];
@@ -94,6 +95,7 @@ export default function App() {
   ) : (
     <SafeAreaView className="flex-1 bg-gray-300 dark:bg-gray-900 items-center justify-center">
       <ThemeToggle />
+      <Scanner />
       <Header />
     </SafeAreaView>
   );
