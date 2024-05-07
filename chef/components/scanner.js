@@ -9,8 +9,7 @@ function Scanner() {
   const [image, setImage] = useState(null); 
   // State to hold extracted text 
   const [extractedText, setExtractedText] = useState(""); 
-
-  // Function to pick an image from the device's gallery 
+  
   const pickImageGallery = async () => { 
     let result = await ImagePicker.launchImageLibraryAsync({ 
       mediaTypes: ImagePicker.MediaTypeOptions.Images, 
@@ -26,7 +25,6 @@ function Scanner() {
     } 
   }; 
 
-  // Function to capture an image using the device's camera 
   const pickImageCamera = async () => { 
     let result = await ImagePicker.launchCameraAsync({ 
       mediaTypes: ImagePicker.MediaTypeOptions.Images, 
@@ -42,7 +40,7 @@ function Scanner() {
     } 
   }; 
 
-  // Function to perform OCR on an image and extract text 
+  // textnikalne
   const performOCR = (file) => { 
     let myHeaders = new Headers(); 
     myHeaders.append("apikey", "FEmvQr5uj99ZUvk3essuYb6P5lLLBS20");
@@ -56,19 +54,19 @@ function Scanner() {
       body: raw, 
     }; 
 
-    // Send a POST request to the OCR API 
+    // ocr api
     fetch("https://api.apilayer.com/image_to_text/upload", requestOptions) 
       .then((response) => response.json()) 
       .then(async (result) => { 
         // Set the extracted text in state 
         setExtractedText(result["all_text"]); 
-        // Save the extracted text to a file
+        // Save data hamro server ma
         await saveTextToFile(result["all_text"]);
       }) 
       .catch((error) => console.log("error", error)); 
   }; 
 
-  // Function to save text to a file
+  // text save hann
   const saveTextToFile = async (text) => {
     const fileUri = `.\components\food_label_details.txt`;
     try {
