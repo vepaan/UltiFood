@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import { View, Text, Pressable, Animated, Easing } from "react-native";
 import { useColorScheme } from "nativewind";
-import styles from "../AppStyles";
+import styles from "@/styles/AppStyles";
 
 function Header() {
   return (
@@ -54,7 +54,7 @@ function Loading() {
       }}
     >
       <Animated.Image
-        source={require("../assets/logo.png")}
+        source={require("@/assets/logo.png")}
         style={[
           styles.logo,
           {

@@ -1,9 +1,10 @@
 {
   "expo": {
-    "name": "chef",
-    "slug": "chef",
+    "name": "UltiFood",
+    "slug": "UltiFood",
     "version": "1.0.0",
     "orientation": "portrait",
+    "scheme":"light",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "automatic",
     "splash": {
@@ -12,7 +13,7 @@
       "backgroundColor": "#ffffff"
     },
     "assetBundlePatterns": [
-      "**/*"
+      "/**/*"
     ],
     "ios": {
       "supportsTablet": true
@@ -27,7 +28,8 @@
       "favicon": "./assets/favicon.png"
     },
     "plugins": [
-      "expo-font"
+      "expo-font",
+      "expo-router"
     ]
   }
 }
