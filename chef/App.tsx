@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { View, Text, Image, Pressable, Animated, Easing, ScrollView } from "react-native";
+import { View, Text, Image, Animated, Easing, ScrollView } from "react-native";
 import { useColorScheme } from "nativewind";
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Header, Loading, ThemeToggle } from "./components/home";
@@ -113,9 +113,11 @@ export default function App() {
   ) : (
     
     <SafeAreaView className="flex-1 bg-gray-300 dark:bg-gray-900 items-center justify-center">
-      <ThemeToggle />
+          <Header />
+          <ThemeToggle />
+    <ScrollView contentContainerStyle={styles.scrollcontainer}>
       <Scanner />
-      <Header />
+    </ScrollView>
     </SafeAreaView>
   );
 }

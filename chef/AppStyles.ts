@@ -7,6 +7,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  scrollcontainer: {
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
   logo: {
     top: 436,
     width: 215,

@@ -104,7 +104,7 @@ function Scanner() {
         /> 
       )} 
       <StatusBar style="auto" /> 
-	  <Text style={styles.text1}>{extractedText}</Text>
+	  <Text className="text-black dark:text-white">{extractedText}</Text>
     </SafeAreaView> 
   ); 
 } 
@@ -113,7 +113,7 @@ const styles = StyleSheet.create({
   text1: { 
     fontSize: 16, 
     marginBottom: 10, 
-    color: "black", 
+    color: "black", dark: "white",
     fontWeight: "bold", 
   }, 
   button: {
