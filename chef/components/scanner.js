@@ -1,83 +1,74 @@
-import { StatusBar } from "expo-status-bar"; 
-import { useState } from "react"; 
-import { Button, StyleSheet, Text, Image, SafeAreaView, Pressable } from "react-native"; 
+import React, { useState } from "react";
+import { StatusBar } from "expo-status-bar";
+import { Button, StyleSheet, Text, Image, SafeAreaView, Pressable } from "react-native";
 import * as ImagePicker from "expo-image-picker";
 import * as FileSystem from "expo-file-system";
 
 function Scanner() {
-  // State to hold the selected image 
-  const [image, setImage] = useState(null); 
-  // State to hold extracted text 
-  const [extractedText, setExtractedText] = useState(""); 
-  
-  const pickImageGallery = async () => { 
-    let result = await ImagePicker.launchImageLibraryAsync({ 
-      mediaTypes: ImagePicker.MediaTypeOptions.Images, 
-      allowsEditing: true, 
-      base64: true, 
-      allowsMultipleSelection: false, 
-    }); 
-    if (!result.canceled) { 
-      // Perform OCR on the selected image 
-      performOCR(result.assets[0]); 
-      // Set the selected image in state 
-      setImage(result.assets[0].uri); 
-    } 
-  }; 
+  const [image, setImage] = useState(null);
+  const [extractedText, setExtractedText] = useState("");
+  const [processing, setProcessing] = useState(false); // State for showing processing indicator
 
-  const pickImageCamera = async () => { 
-    let result = await ImagePicker.launchCameraAsync({ 
-      mediaTypes: ImagePicker.MediaTypeOptions.Images, 
-      allowsEditing: true, 
-      base64: true, 
-      allowsMultipleSelection: false, 
-    }); 
-    if (!result.canceled) { 
-      // Perform OCR on the captured image 
-      // Set the captured image in state 
-      performOCR(result.assets[0]); 
-      setImage(result.assets[0].uri); 
-    } 
-  }; 
+  const pickImageGallery = async () => {
+    let result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.Images,
+      allowsEditing: true,
+      base64: true,
+      allowsMultipleSelection: false,
+    });
+    if (!result.cancelled) {
+      performOCR(result.assets[0]);
+      setImage(result.assets[0].uri);
+    }
+  };
 
-  // textnikalne
-  const performOCR = (file) => { 
-    let myHeaders = new Headers(); 
+  const pickImageCamera = async () => {
+    let result = await ImagePicker.launchCameraAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.Images,
+      allowsEditing: true,
+      base64: true,
+      allowsMultipleSelection: false,
+    });
+    if (!result.cancelled) {
+      performOCR(result.assets[0]);
+      setImage(result.assets[0].uri);
+    }
+  };
+
+  const performOCR = (file) => {
+    setProcessing(true); // Show processing indicator
+
+    let myHeaders = new Headers();
     myHeaders.append("apikey", "FEmvQr5uj99ZUvk3essuYb6P5lLLBS20");
     myHeaders.append("Content-Type", "multipart/form-data");
 
-    let raw = file; 
-    let requestOptions = { 
-      method: "POST", 
-      redirect: "follow", 
-      headers: myHeaders, 
-      body: raw, 
-    }; 
+    let raw = file;
+    let requestOptions = {
+      method: "POST",
+      redirect: "follow",
+      headers: myHeaders,
+      body: raw,
+    };
 
-    // ocr api
-    fetch("https://api.apilayer.com/image_to_text/upload", requestOptions) 
-      .then((response) => response.json()) 
-      .then(async (result) => { 
-        // Set the extracted text in state 
-        setExtractedText(result["all_text"]); 
-        // Save data hamro server ma
+    fetch("https://api.apilayer.com/image_to_text/upload", requestOptions)
+      .then((response) => response.json())
+      .then(async (result) => {
+        setExtractedText(result["all_text"]);
         await saveTextToFile(result["all_text"]);
-        //? Testing 
         console.log(result["all_text"]);
-      }) 
-      .catch((error) => console.log("error", error)); 
-  }; 
+      })
+      .catch((error) => console.log("error", error))
+      .finally(() => {
+        setProcessing(false); // Hide processing indicator after OCR is completed
+      });
+  };
 
-  // text save hann
   const saveTextToFile = async (text) => {
     const directory = `${FileSystem.documentDirectory}components`;
     const fileUri = `${directory}/food_label_details.txt`;
 
     try {
-      // Ensure the directory exists
       await FileSystem.makeDirectoryAsync(directory, { intermediates: true });
-
-      // Write to the file
       await FileSystem.writeAsStringAsync(fileUri, text);
       console.log("Text saved to file successfully");
     } catch (error) {
@@ -85,42 +76,40 @@ function Scanner() {
     }
   };
 
-  return ( 
-    <SafeAreaView > 
-	<Pressable
-	onPress={pickImageCamera}
-	style={styles.button}
-	>
-	<Text style={{ color: 'white' }}>📷</Text>
-	</Pressable>
-      {image && ( 
-        <Image 
-          source={{ uri: image }} 
-          style={{ 
-            width: 400, 
-            height: 300, 
-            objectFit: "contain", 
-          }} 
-        /> 
-      )} 
-      <StatusBar style="auto" /> 
-	  <Text className="text-black dark:text-white">{extractedText}</Text>
-    </SafeAreaView> 
-  ); 
-} 
+  return (
+    <SafeAreaView>
+      <Pressable onPress={pickImageCamera} style={styles.button}>
+        <Text style={{ color: "white" }}>📷</Text>
+      </Pressable>
+      {image && (
+        <Image
+          source={{ uri: image }}
+          style={{
+            width: 400,
+            height: 300,
+            objectFit: "contain",
+          }}
+        />
+      )}
+      <StatusBar style="auto" />
+      <Text style={styles.text1}>{processing ? "Processing..." : ""}</Text>
+      <Text className={"text-black dark:text-white"}>{!processing && extractedText}</Text>
+    </SafeAreaView>
+  );
+}
 
-const styles = StyleSheet.create({ 
-  text1: { 
-    fontSize: 16, 
-    marginBottom: 10, 
-    color: "black", dark: "white",
-    fontWeight: "bold", 
-  }, 
+const styles = StyleSheet.create({
+  text1: {
+    fontSize: 16,
+    marginBottom: 10,
+    color: "black",
+    fontWeight: "bold",
+  },
   button: {
-	backgroundColor: 'blue',
-	padding: 10,
-	borderRadius: 10,
-  }
+    backgroundColor: "blue",
+    padding: 10,
+    borderRadius: 10,
+  },
 });
 
 export { Scanner };
