@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { View, Text, Image, Pressable, Animated, Easing, StyleSheet } from "react-native";
+import { View, Text, Image, Pressable, Animated, Easing, ScrollView } from "react-native";
 import { useColorScheme } from "nativewind";
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Header, Loading, ThemeToggle } from "./components/home";
@@ -7,7 +7,7 @@ import styles from './AppStyles';
 import * as NavigationBar from 'expo-navigation-bar';
 import * as Font from 'expo-font'; 
 import { Scanner } from "./components/scanner";
-import { FoodScanner } from "./components/foodscanner";
+
 
 //const textArray = ['Burning Calories','Synthesizing Proteins','Improving Nutrition', 'Optimizing Diet'];
 const textArray = [];
@@ -111,6 +111,7 @@ export default function App() {
       <Text style={styles.loadingtext}>{displayText}{dots}</Text>
     </View>
   ) : (
+    
     <SafeAreaView className="flex-1 bg-gray-300 dark:bg-gray-900 items-center justify-center">
       <ThemeToggle />
       <Scanner />
