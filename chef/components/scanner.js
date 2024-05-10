@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { StatusBar } from "expo-status-bar";
-import { Button, StyleSheet, Text, Image, SafeAreaView, Pressable } from "react-native";
+import { StyleSheet, Text, Image, SafeAreaView, View, Pressable } from "react-native";
 import * as ImagePicker from "expo-image-picker";
 import * as FileSystem from "expo-file-system";
 
@@ -78,9 +78,11 @@ function Scanner() {
 
   return (
     <SafeAreaView>
+      <View style={styles.buttoncontainer}>
       <Pressable onPress={pickImageCamera} style={styles.button}>
         <Text style={{ color: "white" }}>📷</Text>
       </Pressable>
+      </View>
       {image && (
         <Image
           source={{ uri: image }}
@@ -109,7 +111,14 @@ const styles = StyleSheet.create({
     backgroundColor: "blue",
     padding: 10,
     borderRadius: 10,
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: 50,
   },
+  buttoncontainer: {
+    alignItems: 'center',
+    justifyContent: 'center',
+  }
 });
 
 export { Scanner };
