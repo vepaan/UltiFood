@@ -78,9 +78,11 @@ function Scanner() {
 
   return (
     <SafeAreaView>
+      <View style={styles.buttoncontainer}>
       <Pressable onPress={pickImageCamera} style={styles.button}>
         <Text style={{ color: "white", fontSize: 20, }}>📷</Text>
       </Pressable>
+      </View>
       {image && (
         <Image
           source={{ uri: image }}
@@ -106,14 +108,21 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
   button: {
-    backgroundColor: "blue",
+    backgroundColor: "#ffaa59",
     padding: 10,
     borderRadius: 70,
     alignItems: 'center',
     justifyContent: 'center',
     width: 70,
     height: 70,
-    top: 320,
+  },
+  buttoncontainer: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderWidth: 1,
+    borderColor: 'white',
+    borderStyle: 'solid',
+    top: 60,
   }
 });
 

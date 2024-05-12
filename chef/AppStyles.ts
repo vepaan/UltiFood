@@ -10,10 +10,6 @@ const styles = StyleSheet.create({
   scrollcontainer: {
     alignItems: 'center',
     justifyContent: 'center',
-    flex: 1,
-    //borderWidth: 1,
-    //borderColor: 'black',
-    //borderStyle: 'solid',
   },
   logo: {
     top: 436,
