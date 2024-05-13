@@ -79,7 +79,7 @@ function Scanner() {
   
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={[styles.container]}>
       <ScrollView contentContainerStyle={styles.scrollViewContent}>
         <View style={styles.imageContainer}>
           {image && (
@@ -112,7 +112,6 @@ const styles = StyleSheet.create({
     paddingLeft: 10,
     paddingRight: 10,
     flex: 1,
-    backgroundColor: '#fff',
     marginTop: 10,
   },
   scrollViewContent: {
