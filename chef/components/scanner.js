@@ -30,7 +30,7 @@ function Scanner() {
       base64: true,
       allowsMultipleSelection: false,
     });
-    if (!result.cancelled) {
+    if (!result.canceled) {
       performOCR(result.assets[0]);
       setImage(result.assets[0].uri);
     }
