@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, Image, SafeAreaView, View, Pressable } from "react-native";
+import { StyleSheet, Text, Image, SafeAreaView, View, Pressable, ScrollView, useColorScheme } from "react-native";
 import * as ImagePicker from "expo-image-picker";
 import * as FileSystem from "expo-file-system";
 
 function Scanner() {
+  const colorScheme = useColorScheme();
   const [image, setImage] = useState(null);
   const [extractedText, setExtractedText] = useState("");
   const [processing, setProcessing] = useState(false); // State for showing processing indicator
@@ -16,7 +17,7 @@ function Scanner() {
       base64: true,
       allowsMultipleSelection: false,
     });
-    if (!result.cancelled) {
+    if (!result.canceled) {
       performOCR(result.assets[0]);
       setImage(result.assets[0].uri);
     }
@@ -75,55 +76,81 @@ function Scanner() {
       console.error("Error saving text to file:", error);
     }
   };
+  
 
   return (
-    <SafeAreaView>
-      <View style={styles.buttoncontainer}>
-      <Pressable onPress={pickImageCamera} style={styles.button}>
-        <Text style={{ color: "white", fontSize: 20, }}>📷</Text>
-      </Pressable>
+    <SafeAreaView style={styles.container}>
+      <ScrollView contentContainerStyle={styles.scrollViewContent}>
+        <View style={styles.imageContainer}>
+          {image && (
+            <Image
+              source={{ uri: image }}
+              style={{
+                width: 400,
+                height: 300,
+                objectFit: "contain",
+              }}
+            />
+          )}
+        </View>
+        <Text style={styles.processingText}>{processing ? "Processing..." : ""}</Text>
+        <Text style={styles.extractedText}>{!processing && extractedText}</Text>
+      </ScrollView>
+      <View style={styles.buttonContainer}>
+        <Pressable onPress={pickImageCamera} style={styles.button}>
+          <Text style={{ color: "white", fontSize: 20 }}>📷</Text>
+        </Pressable>
       </View>
-      {image && (
-        <Image
-          source={{ uri: image }}
-          style={{
-            width: 400,
-            height: 300,
-            objectFit: "contain",
-          }}
-        />
-      )}
       <StatusBar style="auto" />
-      <Text style={styles.text1}>{processing ? "Processing..." : ""}</Text>
-      <Text className={"text-black dark:text-white"}>{!processing && extractedText}</Text>
     </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  text1: {
+  container: {
+    paddingTop: 10,
+    paddingLeft: 10,
+    paddingRight: 10,
+    flex: 1,
+    backgroundColor: '#fff',
+    marginTop: 10,
+  },
+  scrollViewContent: {
+    flexGrow: 1,
+    //alignItems: "center",
+    //justifyContent: "center",
+  },
+  imageContainer: {
+    marginBottom: 20,
+  },
+  processingText: {
     fontSize: 16,
     marginBottom: 10,
     color: "black",
     fontWeight: "bold",
   },
+  extractedText: {
+    fontSize: 16,
+    marginBottom: 10,
+    color: "black",
+    fontWeight: "bold",
+  },
+  buttonContainer: {
+    position: "absolute",
+    bottom: 20,
+    left: 0,
+    right: 0,
+    alignItems: "center",
+  },
   button: {
     backgroundColor: "#ffaa59",
     padding: 10,
     borderRadius: 70,
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: "center",
+    justifyContent: "center",
     width: 70,
     height: 70,
   },
-  buttoncontainer: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderWidth: 1,
-    borderColor: 'white',
-    borderStyle: 'solid',
-    top: 60,
-  }
 });
 
 export { Scanner };
