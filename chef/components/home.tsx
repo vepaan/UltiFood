@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, Component } from "react";
 import { View, Text, Pressable, Animated, Easing } from "react-native";
 import { useColorScheme } from "nativewind";
 import styles from "../AppStyles";
@@ -84,4 +84,5 @@ function ThemeToggle() {
     </Pressable>
   );
 }
-export { Header, Loading, ThemeToggle };
+
+export { Header, Loading, ThemeToggle};

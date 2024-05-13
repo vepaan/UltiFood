@@ -3,6 +3,7 @@ import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, Image, SafeAreaView, View, Pressable, ScrollView, useColorScheme } from "react-native";
 import * as ImagePicker from "expo-image-picker";
 import * as FileSystem from "expo-file-system";
+import { BottomNavigator } from "./bottomnavigator";
 
 function Scanner() {
   const colorScheme = useColorScheme();
@@ -113,6 +114,7 @@ const styles = StyleSheet.create({
     paddingRight: 10,
     flex: 1,
     marginTop: 10,
+    paddingBottom: 90,
   },
   scrollViewContent: {
     flexGrow: 1,

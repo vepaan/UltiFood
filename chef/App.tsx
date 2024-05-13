@@ -7,7 +7,7 @@ import styles from './AppStyles';
 import * as NavigationBar from 'expo-navigation-bar';
 import * as Font from 'expo-font'; 
 import { Scanner } from "./components/scanner";
-
+import { BottomNavigator } from "./components/bottomnavigator";
 
 //const textArray = ['Burning Calories','Synthesizing Proteins','Improving Nutrition', 'Optimizing Diet'];
 const textArray = [];
@@ -116,6 +116,7 @@ export default function App() {
       <Header />
       <ThemeToggle />
       <Scanner />
+      <BottomNavigator/>
     </SafeAreaView>
   );
 }
