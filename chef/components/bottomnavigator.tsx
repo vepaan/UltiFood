@@ -25,13 +25,15 @@ const styles = StyleSheet.create({
     alignItems: 'center', // Center horizontally
   },
   rectangle: {
-    width: '100%',
+    width: '80%',
     height: 60,
     backgroundColor: '#2196F3',
     alignItems: 'center',
     justifyContent: 'center',
-    borderTopLeftRadius: 10,
-    borderTopRightRadius: 10,
+    borderTopLeftRadius: 15,
+    borderTopRightRadius: 15,
+    borderBottomLeftRadius: 15,
+    borderBottomRightRadius: 15,
   },
   buttonsContainer: {
     flexDirection: 'row',

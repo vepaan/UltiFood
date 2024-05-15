@@ -43,16 +43,21 @@ export default function App() {
 
 
   useEffect(() => {
-    NavigationBar.setBackgroundColorAsync("#ffaa59");
+    const timer = setTimeout(() => {
+      NavigationBar.setBackgroundColorAsync("#ffaa59");
+    }, 0);
     const timer1 = setTimeout(() => {
       NavigationBar.setBackgroundColorAsync("#22264C");
     }, 7200);
+    const timer2 = setTimeout(() => {
+      NavigationBar.setBackgroundColorAsync(colorScheme=== 'dark' ? '#111827' : '#d1d5db');
+    }, 7800);
     NavigationBar.setBehaviorAsync("inset-swipe");
-    return () => clearTimeout(timer1);
+    return () => clearTimeout(timer1); clearTimeout(timer)
   }, []);
 
   useEffect(()=> {
-    NavigationBar.setBackgroundColorAsync(colorScheme === 'dark' ? 'black' : 'white');
+      NavigationBar.setBackgroundColorAsync(colorScheme === 'dark' ? '#111827' : '#d1d5db');
   }, [colorScheme]);
   
 
