@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, Image, SafeAreaView, View, Pressable, ScrollView, useColorScheme } from "react-native";
+import { StyleSheet, Text, Image, SafeAreaView, View, Pressable, ScrollView} from "react-native";
 import * as ImagePicker from "expo-image-picker";
 import * as FileSystem from "expo-file-system";
-import { BottomNavigator } from "./bottomnavigator";
+import { useColorScheme } from "nativewind";
+
 
 function Scanner() {
-  const colorScheme = useColorScheme();
+  const { colorScheme } = useColorScheme();
   const [image, setImage] = useState(null);
   const [extractedText, setExtractedText] = useState("");
   const [processing, setProcessing] = useState(false); // State for showing processing indicator
@@ -82,7 +83,7 @@ function Scanner() {
   return (
     <SafeAreaView style={[styles.container]}>
       <ScrollView contentContainerStyle={styles.scrollViewContent}>
-        <View style={styles.imageContainer}>
+        <View>
           {image && (
             <Image
               source={{ uri: image }}
@@ -90,6 +91,7 @@ function Scanner() {
                 width: 400,
                 height: 300,
                 objectFit: "contain",
+                zIndex: 10,
               }}
             />
           )}
@@ -98,7 +100,8 @@ function Scanner() {
         <Text style={styles.extractedText}>{!processing && extractedText}</Text>
       </ScrollView>
       <View style={styles.buttonContainer}>
-        <Pressable onPress={pickImageCamera} style={styles.button}>
+        <View className="bg-gray-300 dark:bg-gray-900" style={styles.semicircleStyle}></View>
+        <Pressable onPress={pickImageCamera} style={[styles.button, {shadowColor: colorScheme === "dark"? "white" : "black"}]}>
           <Text style={{ color: "white", fontSize: 20 }}>📷</Text>
         </Pressable>
       </View>
@@ -109,20 +112,12 @@ function Scanner() {
 
 const styles = StyleSheet.create({
   container: {
-    paddingTop: 10,
-    paddingLeft: 10,
-    paddingRight: 10,
+    justifyContent: "center",
+    alignItems: "center",
     flex: 1,
-    marginTop: 10,
-    paddingBottom: 90,
   },
   scrollViewContent: {
     flexGrow: 1,
-    //alignItems: "center",
-    //justifyContent: "center",
-  },
-  imageContainer: {
-    marginBottom: 20,
   },
   processingText: {
     fontSize: 16,
@@ -138,20 +133,34 @@ const styles = StyleSheet.create({
   },
   buttonContainer: {
     position: "absolute",
-    bottom: 20,
-    left: 0,
-    right: 0,
+    bottom: 50,
+    paddingBottom: -10,
     alignItems: "center",
+    justifyContent: "center",
+    zIndex: 1,
+    borderWidth: 10
   },
   button: {
-    backgroundColor: "#ffaa59",
-    padding: 10,
+    position: "absolute",
     borderRadius: 70,
     alignItems: "center",
     justifyContent: "center",
     width: 70,
     height: 70,
+    backgroundColor: "#ffaa59",
+    elevation: 20,
   },
+  semicircleStyle: {
+    position: 'absolute',
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: 85,
+    height: 42.5, // Half of the original height
+    borderBottomLeftRadius: 42.5, // Half of the width
+    borderBottomRightRadius: 42.5, // Half of the width
+    bottom: -42,
+  }
+  
 });
 
 export { Scanner };

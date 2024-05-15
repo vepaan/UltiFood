@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
-import { View, Text, Image, Animated, Easing, ScrollView, StatusBar } from "react-native";
+import { View, Text, Image, Animated, Easing } from "react-native";
 import { useColorScheme } from "nativewind";
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { Header, Loading, ThemeToggle } from "./components/home";
+import { Header, ThemeToggle } from "./components/home";
 import styles from './AppStyles';
 import * as NavigationBar from 'expo-navigation-bar';
 import * as Font from 'expo-font'; 

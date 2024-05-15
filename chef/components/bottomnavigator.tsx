@@ -6,11 +6,6 @@ class BottomNavigator extends Component {
     return (
       <View style={styles.container}>
         <View style={styles.rectangle}>
-          <View></View>
-        </View>
-        <View style={styles.buttonsContainer}>
-          <View style={styles.buttonGroup}>
-          </View>
         </View>
       </View>
     );
@@ -30,31 +25,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#2196F3',
     alignItems: 'center',
     justifyContent: 'center',
-    borderTopLeftRadius: 15,
-    borderTopRightRadius: 15,
-    borderBottomLeftRadius: 15,
-    borderBottomRightRadius: 15,
-  },
-  buttonsContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    width: '100%',
-    //paddingHorizontal: 15,
-    //paddingVertical: 10,
-  },
-  button: {
-    backgroundColor: '#FF5722',
-    paddingVertical: 8,
-    paddingHorizontal: 16,
-    borderRadius: 20,
-  },
-  buttonText: {
-    color: '#fff',
-    fontSize: 16,
-    fontWeight: 'bold',
-  },
-  buttonGroup: {
-    flexDirection: 'row',
+    borderRadius: 15,
   },
 });
 
