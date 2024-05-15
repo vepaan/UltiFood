@@ -52,7 +52,6 @@ export default function App() {
     const timer2 = setTimeout(() => {
       NavigationBar.setBackgroundColorAsync(colorScheme=== 'dark' ? '#111827' : '#d1d5db');
     }, 7800);
-    NavigationBar.setBehaviorAsync("inset-swipe");
     return () => clearTimeout(timer1); clearTimeout(timer)
   }, []);
 
