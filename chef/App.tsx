@@ -13,7 +13,7 @@ import { BottomNavigator } from "./components/bottomnavigator";
 const textArray = [];
 
 export default function App() {
-  const { colorScheme, setColorScheme } = useColorScheme();
+  const { colorScheme } = useColorScheme();
   const [loading, setLoading] = useState(true);
   const spinValue = useRef(new Animated.Value(0)).current;
   const [displayText, setDisplayText] = useState('');
@@ -49,9 +49,6 @@ export default function App() {
     const timer1 = setTimeout(() => {
       NavigationBar.setBackgroundColorAsync("#22264C");
     }, 7200);
-    const timer2 = setTimeout(() => {
-      NavigationBar.setBackgroundColorAsync(colorScheme=== 'dark' ? '#111827' : '#d1d5db');
-    }, 7800);
     return () => clearTimeout(timer1); clearTimeout(timer)
   }, []);
 
