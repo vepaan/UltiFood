@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { View, Text, Image, Animated, Easing, ScrollView } from "react-native";
+import { View, Text, Image, Animated, Easing, ScrollView, StatusBar } from "react-native";
 import { useColorScheme } from "nativewind";
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Header, Loading, ThemeToggle } from "./components/home";
@@ -22,6 +22,7 @@ export default function App() {
   const scaleValue = useRef(new Animated.Value(1)).current;
   const [fontLoaded, setFontLoaded] = useState(false);
 
+
   useEffect(() => {
     async function loadFont() {
       await Font.loadAsync({
@@ -33,16 +34,27 @@ export default function App() {
     loadFont();
   }, []);
 
-
   useEffect(() => {
-    NavigationBar.setBackgroundColorAsync("#111827");
-    NavigationBar.setVisibilityAsync("hidden");
     const timer = setTimeout(() => {
       setLoading(false);
-    }, 6900+900 );
-    NavigationBar.setBehaviorAsync("inset-swipe")
+    }, 7800);
     return () => clearTimeout(timer);
   }, []);
+
+
+  useEffect(() => {
+    NavigationBar.setBackgroundColorAsync("#ffaa59");
+    const timer1 = setTimeout(() => {
+      NavigationBar.setBackgroundColorAsync("#22264C");
+    }, 7200);
+    NavigationBar.setBehaviorAsync("inset-swipe");
+    return () => clearTimeout(timer1);
+  }, []);
+
+  useEffect(()=> {
+    NavigationBar.setBackgroundColorAsync(colorScheme === 'dark' ? 'black' : 'white');
+  }, [colorScheme]);
+  
 
   useEffect(() => {
     if (loading) {

@@ -6,7 +6,7 @@ class BottomNavigator extends Component {
     return (
       <View style={styles.container}>
         <View style={styles.rectangle}>
-          <View style={styles.cutout}></View>
+          <View></View>
         </View>
         <View style={styles.buttonsContainer}>
           <View style={styles.buttonGroup}>
@@ -32,14 +32,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     borderTopLeftRadius: 10,
     borderTopRightRadius: 10,
-  },
-  cutout: {
-    width: 70,
-    height: 70,
-    backgroundColor: '#fff',
-    borderRadius: 70,
-    position: 'absolute',
-    top: -30,
   },
   buttonsContainer: {
     flexDirection: 'row',
