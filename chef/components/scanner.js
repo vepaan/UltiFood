@@ -114,7 +114,7 @@ const styles = StyleSheet.create({
     paddingRight: 10,
     flex: 1,
     marginTop: 10,
-    paddingBottom: 90,
+    //paddingBottom: 60,
   },
   scrollViewContent: {
     flexGrow: 1,
@@ -151,6 +151,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     width: 70,
     height: 70,
+    zIndex: 3,
   },
 });
 

@@ -6,9 +6,8 @@ class BottomNavigator extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <View style={styles.rectangle}>
-          <View style={styles.semicircle}></View>
-        </View>
+        <View style={styles.rectangle}></View>
+        <View style={styles.semicircle}></View>
         <View style={styles.buttonsContainer}>
           <View style={styles.buttonGroup}>
           </View>
@@ -36,6 +35,7 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 15,
     borderBottomLeftRadius: 15,
     borderBottomRightRadius: 15,
+    zIndex: 1,
   },
   semicircle: {
     position: 'absolute',
@@ -45,6 +45,7 @@ const styles = StyleSheet.create({
     borderBottomRightRadius: 80,
     bottom: 15,
     backgroundColor: '#111827',
+    zIndex: 2,
   },
   buttonsContainer: {
     flexDirection: 'row',
