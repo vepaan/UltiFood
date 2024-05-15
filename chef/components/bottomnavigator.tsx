@@ -1,12 +1,13 @@
-import React, { Component } from 'react';
+import React, { Component, useEffect } from 'react';
 import { View, StyleSheet } from 'react-native';
+import { useColorScheme } from 'react-native';
 
 class BottomNavigator extends Component {
   render() {
     return (
       <View style={styles.container}>
         <View style={styles.rectangle}>
-          <View></View>
+          <View style={styles.semicircle}></View>
         </View>
         <View style={styles.buttonsContainer}>
           <View style={styles.buttonGroup}>
@@ -17,6 +18,7 @@ class BottomNavigator extends Component {
   }
 }
 
+
 const styles = StyleSheet.create({
   container: {
     position: 'absolute',
@@ -25,15 +27,24 @@ const styles = StyleSheet.create({
     alignItems: 'center', // Center horizontally
   },
   rectangle: {
-    width: '80%',
+    width: '85%',
     height: 60,
-    backgroundColor: '#2196F3',
+    backgroundColor: '#374151',
     alignItems: 'center',
     justifyContent: 'center',
     borderTopLeftRadius: 15,
     borderTopRightRadius: 15,
     borderBottomLeftRadius: 15,
     borderBottomRightRadius: 15,
+  },
+  semicircle: {
+    position: 'absolute',
+    height: 45,
+    width: 80,
+    borderBottomLeftRadius: 80,
+    borderBottomRightRadius: 80,
+    bottom: 15,
+    backgroundColor: '#111827',
   },
   buttonsContainer: {
     flexDirection: 'row',

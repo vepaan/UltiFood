@@ -131,8 +131,8 @@ export default function App() {
     <SafeAreaView className="flex-1 bg-gray-300 dark:bg-gray-900 items-center justify-center">
       <Header />
       <ThemeToggle />
-      <Scanner />
       <BottomNavigator/>
+      <Scanner />
     </SafeAreaView>
   );
 }
