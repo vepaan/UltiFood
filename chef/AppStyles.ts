@@ -28,6 +28,9 @@ const styles = StyleSheet.create({
     color: '#000',
     top: '70%',
     fontSize: 20,
+  },
+  header: {
+    fontFamily: 'Montserrat',
   }
 });
 
