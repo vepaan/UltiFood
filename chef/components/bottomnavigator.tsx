@@ -1,21 +1,30 @@
-import React, { Component, useEffect } from 'react';
+import { setBackgroundColorAsync } from 'expo-navigation-bar';
+import React, { Component, useEffect, useState } from 'react';
 import { View, StyleSheet } from 'react-native';
-import { useColorScheme } from 'react-native';
+import { useColorScheme } from 'nativewind';
+import { ThemeToggle } from './home';
 
-class BottomNavigator extends Component {
-  render() {
-    return (
-      <View style={styles.container}>
-        <View style={styles.rectangle}></View>
-        <View style={styles.semicircle}></View>
-        <View style={styles.circle}></View>
-        <View style={styles.buttonsContainer}>
-          <View style={styles.buttonGroup}>
-          </View>
+function BottomNavigator(){
+  const {colorScheme, setColorScheme} = useColorScheme();
+  const [bgColor, setbgColor] = useState(colorScheme === 'dark' ? '#111827' : '#d1d5db');
+  const [key, setKey] = useState(0);
+
+  useEffect(() => {
+    setbgColor(colorScheme === 'dark' ? '#111827' : '#d1d5db');
+  }, [colorScheme]);
+
+  return (
+    <View style={styles.container}>
+      <View style={styles.rectangle}></View>
+      <View style={{ ...styles.semicircle, backgroundColor: bgColor }}>
+      </View>
+      <View style={styles.circle}></View>
+      <View style={styles.buttonsContainer}>
+        <View style={styles.buttonGroup}>
         </View>
       </View>
-    );
-  }
+    </View>
+  );
 }
 
 
@@ -45,7 +54,6 @@ const styles = StyleSheet.create({
     borderBottomLeftRadius: 80,
     borderBottomRightRadius: 80,
     bottom: 12,
-    backgroundColor: '#111827',
     zIndex: 2,
   },
   circle: {
