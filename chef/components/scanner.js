@@ -114,12 +114,12 @@ const styles = StyleSheet.create({
     paddingRight: 10,
     flex: 1,
     marginTop: 10,
-    //paddingBottom: 60,
   },
   scrollViewContent: {
     flexGrow: 1,
     //alignItems: "center",
     //justifyContent: "center",
+    paddingBottom: 60,
   },
   imageContainer: {
     marginBottom: 20,

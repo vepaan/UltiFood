@@ -46,6 +46,7 @@ const styles = StyleSheet.create({
     borderBottomLeftRadius: 15,
     borderBottomRightRadius: 15,
     zIndex: 1,
+    //opacity: 0.6,
   },
   semicircle: {
     position: 'absolute',

@@ -43,21 +43,23 @@ export default function App() {
 
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      NavigationBar.setBackgroundColorAsync("#ffaa59");
-    }, 0);
-    const timer1 = setTimeout(() => {
-      NavigationBar.setBackgroundColorAsync("#22264C");
-    }, 7200);
-    const timer2 = setTimeout(() => {
-      NavigationBar.setBackgroundColorAsync(colorScheme=== 'dark' ? '#111827' : '#d1d5db');
-    }, 7800);
-    return () => clearTimeout(timer1); clearTimeout(timer)
-  }, []);
-
-  useEffect(()=> {
+    if (loading) {
+      const timer = setTimeout(() => {
+        NavigationBar.setBackgroundColorAsync("#ffaa59");
+      }, 0);
+      const timer1 = setTimeout(() => {
+        NavigationBar.setBackgroundColorAsync("#22264C");
+      }, 7200);
+  
+      return () => {
+        clearTimeout(timer);
+        clearTimeout(timer1);
+      };
+    } else {
       NavigationBar.setBackgroundColorAsync(colorScheme === 'dark' ? '#111827' : '#d1d5db');
-  }, [colorScheme]);
+    }
+  }, [loading, colorScheme]);
+  
   
 
   useEffect(() => {
@@ -129,7 +131,6 @@ export default function App() {
   ) : (
     
     <SafeAreaView className="flex-1 bg-gray-300 dark:bg-gray-900 items-center justify-center">
-      <Header />
       <ThemeToggle />
       <BottomNavigator/>
       <Scanner />
