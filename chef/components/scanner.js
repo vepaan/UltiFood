@@ -4,6 +4,7 @@ import { StyleSheet, Text, Image, SafeAreaView, View, Pressable, ScrollView, use
 import * as ImagePicker from "expo-image-picker";
 import * as FileSystem from "expo-file-system";
 import { BottomNavigator } from "./bottomnavigator";
+import Icon from 'react-native-vector-icons/Ionicons'
 
 function Scanner() {
   const colorScheme = useColorScheme();
@@ -99,7 +100,7 @@ function Scanner() {
       </ScrollView>
       <View style={styles.buttonContainer}>
         <Pressable onPress={pickImageCamera} style={styles.button}>
-          <Text style={{ color: "white", fontSize: 20 }}>📷</Text>
+          <Icon name='scan' style={{fontSize: 25}}/>
         </Pressable>
       </View>
       <StatusBar style="auto" />
