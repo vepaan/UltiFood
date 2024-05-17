@@ -56,7 +56,7 @@ export default function App() {
         clearTimeout(timer1);
       };
     } else {
-      NavigationBar.setBackgroundColorAsync(colorScheme === 'dark' ? '#111827' : '#d1d5db');
+      NavigationBar.setBackgroundColorAsync(colorScheme === 'dark' ? '#374151' : '#eff0f4');
     }
   }, [loading, colorScheme]);
   

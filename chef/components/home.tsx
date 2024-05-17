@@ -2,26 +2,11 @@ import React, { useEffect, useRef, useState, Component } from "react";
 import { View, Text, Pressable, Animated, Easing } from "react-native";
 import { useColorScheme } from "nativewind";
 import styles from "../AppStyles";
-import * as Font from 'expo-font'; 
-
 
 function Header() {
-  const [fontLoaded, setFontLoaded] = useState(false);
-
-  useEffect(() => {
-    async function loadFont() {
-      await Font.loadAsync({
-        'Montserrat': require('./Montserrat-VariableFont_wght.ttf'),
-      });
-      setFontLoaded(true);
-    }
-
-    loadFont();
-  }, []);
-
   return (
     <>
-      <Text className="text-black dark:text-white text-4xl" style={styles.header}>
+      <Text className="text-black dark:text-white">
         Ultifood
       </Text>
     </>

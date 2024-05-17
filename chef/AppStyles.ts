@@ -29,9 +29,6 @@ const styles = StyleSheet.create({
     top: '70%',
     fontSize: 20,
   },
-  header: {
-    fontFamily: 'Montserrat',
-  }
 });
 
 export default styles;

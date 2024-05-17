@@ -6,17 +6,19 @@ import { ThemeToggle } from './home';
 
 function BottomNavigator(){
   const {colorScheme, setColorScheme} = useColorScheme();
-  const [bgColor, setbgColor] = useState(colorScheme === 'dark' ? '#111827' : '#d1d5db');
+  const [bgColorsemicircle, setbgColorsemicircle] = useState(colorScheme === 'dark' ? '#111827' : '#d1d5db');
+  const [bgColorrectangle, setbgColorrectangle] = useState(colorScheme === 'dark' ? '#374151' : '#eff0f4')
   const [key, setKey] = useState(0);
 
   useEffect(() => {
-    setbgColor(colorScheme === 'dark' ? '#111827' : '#d1d5db');
+    setbgColorsemicircle(colorScheme === 'dark' ? '#111827' : '#d1d5db');
+    setbgColorrectangle(colorScheme === 'dark' ? '#374151' : '#eff0f4');
   }, [colorScheme]);
 
   return (
     <View style={styles.container}>
-      <View style={styles.rectangle}></View>
-      <View style={{ ...styles.semicircle, backgroundColor: bgColor }}>
+      <View style={{ ...styles.rectangle, backgroundColor: bgColorrectangle}}></View>
+      <View style={{ ...styles.semicircle, backgroundColor: bgColorsemicircle }}>
       </View>
       <View style={styles.circle}></View>
       <View style={styles.buttonsContainer}>
@@ -33,27 +35,21 @@ const styles = StyleSheet.create({
     position: 'absolute',
     bottom: 0,
     width: '100%',
-    alignItems: 'center', // Center horizontally
+    alignItems: 'center',
   },
   rectangle: {
-    width: '85%',
-    height: 60,
-    backgroundColor: '#374151',
+    width: '100%',
+    height: 55,
     alignItems: 'center',
     justifyContent: 'center',
-    borderTopLeftRadius: 15,
-    borderTopRightRadius: 15,
-    borderBottomLeftRadius: 15,
-    borderBottomRightRadius: 15,
     zIndex: 1,
-    //opacity: 0.6,
   },
   semicircle: {
     position: 'absolute',
-    height: 48,
+    height: 43,
     width: 87,
-    borderBottomLeftRadius: 80,
-    borderBottomRightRadius: 80,
+    borderBottomLeftRadius: 43,
+    borderBottomRightRadius: 43,
     bottom: 12,
     zIndex: 2,
   },
