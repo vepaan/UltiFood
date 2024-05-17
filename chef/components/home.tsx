@@ -7,7 +7,7 @@ function Header() {
   return (
     <>
       <Text className="text-black dark:text-white">
-        Ultifood
+        Good Morning, User
       </Text>
     </>
   );
