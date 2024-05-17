@@ -1,5 +1,5 @@
 import React, { Component, useEffect, useState } from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, Pressable } from 'react-native';
 import { useColorScheme } from 'nativewind';
 import FontistoIcon from 'react-native-vector-icons/Fontisto';
 import FeatherIcon from 'react-native-vector-icons/Feather'
@@ -26,10 +26,10 @@ function BottomNavigator(){
       <View style={styles.circle}></View>
       <View style={styles.buttonsContainer}>
         <View style={styles.buttonGroup}>
-        <FontistoIcon name="home" style={{ ...styles.icon, left:20, color:coloricons}} />
-        <FeatherIcon name="heart" style={{ ...styles.icon, left:90, color:coloricons}} />
-        <FeatherIcon name="book-open" style={{ ...styles.icon, right:90, color:coloricons}} />
-        <FontAwesomeIcon name="user" style={{ ...styles.icon, right:20, color:coloricons}} />
+        <Pressable><FontistoIcon name="home" style={{ ...styles.icon, left:20, color:coloricons}} /></Pressable>
+        <Pressable><FeatherIcon name="heart" style={{ ...styles.icon, left:90, color:coloricons}} /></Pressable>
+        <Pressable><FeatherIcon name="book-open" style={{ ...styles.icon, right:90, color:coloricons}} /></Pressable>
+        <Pressable><FontAwesomeIcon name="user" style={{ ...styles.icon, right:20, color:coloricons}} /></Pressable>
         </View>
       </View>
     </View>
