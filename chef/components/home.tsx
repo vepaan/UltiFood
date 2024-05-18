@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState, Component } from "react";
-import { View, Text, Pressable, Animated, Easing, ScrollView } from "react-native";
+import { View, Text, Pressable, Image, Animated, Easing, ScrollView, FlatList } from "react-native";
 import { useColorScheme } from "nativewind";
 import styles from "../AppStyles";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -86,14 +86,10 @@ function ThemeToggle() {
 
 function Recommended(){
   return(
-    <SafeAreaView style={{borderStyle: 'solid', borderWidth: 1, borderColor: 'white', height: 130, top:500,}}>
+    <SafeAreaView style={{height: 130, top:500}}>
     <ScrollView horizontal>
-      <View style={styles.recommended}>
-        <Text style={{fontSize:30, color: 'white'}}>Hello</Text>
-      </View>
-      <View style={styles.recommended}>
-        <Text style={{fontSize:30, color: 'white'}}>Hello</Text>
-      </View>
+        <View style={styles.filter}><Image style={styles.recommended} source={require('./recommended/momo.jpg')}/></View>
+        <View style={styles.filter}><Image style={styles.recommended} source={require('./recommended/naan.jpg')}/></View>
     </ScrollView>
     </SafeAreaView>
   )
