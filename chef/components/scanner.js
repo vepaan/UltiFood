@@ -98,11 +98,9 @@ function Scanner() {
         <Text style={styles.processingText}>{processing ? "Processing..." : ""}</Text>
         <Text style={styles.extractedText}>{!processing && extractedText}</Text>
       </ScrollView>
-      <View style={styles.buttonContainer}>
         <Pressable onPress={pickImageCamera} style={styles.button}>
           <Icon name='scan' style={{fontSize: 25}}/>
         </Pressable>
-      </View>
       <StatusBar style="auto" />
     </SafeAreaView>
   );
@@ -118,8 +116,6 @@ const styles = StyleSheet.create({
   },
   scrollViewContent: {
     flexGrow: 1,
-    //alignItems: "center",
-    //justifyContent: "center",
     paddingBottom: 60,
   },
   imageContainer: {
@@ -137,14 +133,8 @@ const styles = StyleSheet.create({
     color: "black",
     fontWeight: "bold",
   },
-  buttonContainer: {
-    position: "absolute",
-    bottom: 20,
-    left: 0,
-    right: 0,
-    alignItems: "center",
-  },
   button: {
+    position: 'absolute',
     backgroundColor: "#ffaa59",
     padding: 10,
     borderRadius: 70,
@@ -153,6 +143,8 @@ const styles = StyleSheet.create({
     width: 70,
     height: 70,
     zIndex: 3,
+    bottom: 20,
+    left: -25,
   },
 });
 

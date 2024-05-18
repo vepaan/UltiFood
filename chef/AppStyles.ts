@@ -7,10 +7,15 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  scrollcontainer: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    flex:1,
+  recommended: {
+    borderColor: 'white',
+    borderWidth: 1,
+    borderStyle: 'solid',
+    marginLeft: 10,
+    marginRight: 10,
+    borderRadius: 10,
+    width: 250,
+    height: 130,
   },
   logo: {
     top: 436,
