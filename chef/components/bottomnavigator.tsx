@@ -1,17 +1,14 @@
-import React, { Component, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, StyleSheet, Pressable } from 'react-native';
 import { useColorScheme } from 'nativewind';
 import FontistoIcon from 'react-native-vector-icons/Fontisto';
 import FeatherIcon from 'react-native-vector-icons/Feather'
 import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome'
 import IonIcon from 'react-native-vector-icons/Ionicons'
-import { StatusBar } from "expo-status-bar";
-import { Text, Image, SafeAreaView, ScrollView,} from "react-native";
 import * as ImagePicker from "expo-image-picker";
 import * as FileSystem from "expo-file-system";
-import Icon from 'react-native-vector-icons/Ionicons'
 import { useNavigation } from '@react-navigation/native';
-import ScannerScreen from './ScannerScreen';
+import { Recommended} from './home';
 
 
 function BottomNavigator(){
@@ -121,6 +118,7 @@ function BottomNavigator(){
       <Pressable onPress={handlePress} style={styles.scannerbutton}>
           <IonIcon name='scan' style={{fontSize: 25}}/>
       </Pressable>
+      <Recommended />
     </View>
   );
 }
