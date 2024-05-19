@@ -7,7 +7,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 function Header() {
   return (
     <>
-      <Text className="text-black dark:text-white">
+      <Text className="text-white dark:text-black">
         Good Morning, User
       </Text>
     </>

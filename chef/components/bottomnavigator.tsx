@@ -8,7 +8,7 @@ import IonIcon from 'react-native-vector-icons/Ionicons'
 import * as ImagePicker from "expo-image-picker";
 import * as FileSystem from "expo-file-system";
 import { useNavigation } from '@react-navigation/native';
-import { Recommended} from './home';
+import { Recommended, Header} from './home';
 
 
 function BottomNavigator(){
@@ -104,6 +104,7 @@ function BottomNavigator(){
 
   return (
     <View style={styles.container}>
+      <Recommended />
       <View style={{ ...styles.rectangle, backgroundColor: bgColorrectangle}}></View>
       <View style={{ ...styles.semicircle, backgroundColor: bgColorsemicircle }}></View>
       <View style={styles.circle}></View>
@@ -118,7 +119,6 @@ function BottomNavigator(){
       <Pressable onPress={handlePress} style={styles.scannerbutton}>
           <IonIcon name='scan' style={{fontSize: 25}}/>
       </Pressable>
-      <Recommended />
     </View>
   );
 }
