@@ -94,7 +94,7 @@ function Recommended(){
 
   return(
     <SafeAreaView style={{height: 130, top:500}}>
-    <ScrollView horizontal>
+    <ScrollView horizontal showsHorizontalScrollIndicator={false}>
         <View style={styles.filter}>
           <Image style={{...styles.recommended, borderColor: recommendedoutline}} source={require('./recommended/momo.jpg')}/>
           <View style={styles.recommendedoverlay}></View>
