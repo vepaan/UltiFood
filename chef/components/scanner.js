@@ -98,9 +98,6 @@ function Scanner() {
         <Text style={styles.processingText}>{processing ? "Processing..." : ""}</Text>
         <Text style={styles.extractedText}>{!processing && extractedText}</Text>
       </ScrollView>
-        <Pressable onPress={pickImageCamera} style={styles.button}>
-          <Icon name='scan' style={{fontSize: 25}}/>
-        </Pressable>
       <StatusBar style="auto" />
     </SafeAreaView>
   );
@@ -148,4 +145,5 @@ const styles = StyleSheet.create({
   },
 });
 
-export { Scanner };
+export default Scanner;
+

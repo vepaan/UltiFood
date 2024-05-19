@@ -6,11 +6,14 @@ import { Header, Loading, Recommended, ThemeToggle } from "./components/home";
 import styles from './AppStyles';
 import * as NavigationBar from 'expo-navigation-bar';
 import * as Font from 'expo-font'; 
-import { Scanner } from "./components/scanner";
+import ScannerScreen from "./components/ScannerScreen";
 import { BottomNavigator } from "./components/bottomnavigator";
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 
 //const textArray = ['Burning Calories','Synthesizing Proteins','Improving Nutrition', 'Optimizing Diet'];
 const textArray = [];
+const Stack = createStackNavigator();
 
 export default function App() {
   const { colorScheme, setColorScheme } = useColorScheme();
@@ -130,12 +133,11 @@ export default function App() {
     </View>
   ) : (
     
-    <SafeAreaView className="flex-1 bg-gray-300 dark:bg-gray-900 items-center justify-center">
-      <Header />
-      <ThemeToggle />
-      <BottomNavigator/>
-      <Recommended />
-      <Scanner />
-    </SafeAreaView>
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name="Home" component={BottomNavigator} />
+        <Stack.Screen name="Scanner" component={ScannerScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
