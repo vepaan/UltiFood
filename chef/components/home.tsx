@@ -85,11 +85,24 @@ function ThemeToggle() {
 
 
 function Recommended(){
+  const { colorScheme, setColorScheme } = useColorScheme();
+  const [recommendedoutline, setrecommendedoutline]=useState(colorScheme === 'dark' ? 'white' : 'black');
+
+  useEffect(() => {
+    setrecommendedoutline(colorScheme === 'dark' ? 'white' : 'black');
+  }, [colorScheme]);
+
   return(
     <SafeAreaView style={{height: 130, top:500}}>
     <ScrollView horizontal>
-        <View style={styles.filter}><Image style={styles.recommended} source={require('./recommended/momo.jpg')}/></View>
-        <View style={styles.filter}><Image style={styles.recommended} source={require('./recommended/naan.jpg')}/></View>
+        <View style={styles.filter}>
+          <Image style={{...styles.recommended, borderColor: recommendedoutline}} source={require('./recommended/momo.jpg')}/>
+          <View style={styles.recommendedoverlay}></View>
+        </View>
+        <View style={styles.filter}>
+          <Image style={{...styles.recommended, borderColor: recommendedoutline}} source={require('./recommended/naan.jpg')}/>
+          <View style={styles.recommendedoverlay}></View>
+        </View>
     </ScrollView>
     </SafeAreaView>
   )
