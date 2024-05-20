@@ -5,10 +5,10 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import styles from './AppStyles';
 import * as NavigationBar from 'expo-navigation-bar';
 import * as Font from 'expo-font'; 
-import ScannerScreen from "./components/ScannerScreen";
 import { BottomNavigator } from "./components/bottomnavigator";
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+import Scanner from "./components/scanner";
 
 //const textArray = ['Burning Calories','Synthesizing Proteins','Improving Nutrition', 'Optimizing Diet'];
 const textArray = [];
@@ -135,7 +135,7 @@ export default function App() {
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen name="Home" component={BottomNavigator} />
-        <Stack.Screen name="Scanner" component={ScannerScreen} />
+        <Stack.Screen name="Scanner" component={Scanner} />
       </Stack.Navigator>
     </NavigationContainer>
   );

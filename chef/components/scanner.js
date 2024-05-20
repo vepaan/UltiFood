@@ -3,14 +3,17 @@ import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, Image, SafeAreaView, View, Pressable, ScrollView, useColorScheme } from "react-native";
 import * as ImagePicker from "expo-image-picker";
 import * as FileSystem from "expo-file-system";
-import { BottomNavigator } from "./bottomnavigator";
-import Icon from 'react-native-vector-icons/Ionicons'
+import { useNavigation } from "@react-navigation/native";
 
 function Scanner() {
   const colorScheme = useColorScheme();
   const [image, setImage] = useState(null);
   const [extractedText, setExtractedText] = useState("");
   const [processing, setProcessing] = useState(false); // State for showing processing indicator
+
+  function Navigator(){
+    pickImageCamera()
+  }
 
   const pickImageGallery = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({
@@ -99,6 +102,7 @@ function Scanner() {
         <Text style={styles.extractedText}>{!processing && extractedText}</Text>
       </ScrollView>
       <StatusBar style="auto" />
+      <Navigator />
     </SafeAreaView>
   );
 }
