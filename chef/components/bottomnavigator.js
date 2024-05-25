@@ -30,6 +30,9 @@ function BottomNavigator(){
   return (
     <View style={styles.container}>
       <Recommended />
+      <Pressable onPress={handlePress} style={styles.scannerbutton}>
+          <IonIcon name='scan' style={{fontSize: 25}}/>
+      </Pressable>
       <View style={{ ...styles.rectangle, backgroundColor: bgColorrectangle}}></View>
       <View style={{ ...styles.semicircle, backgroundColor: bgColorsemicircle }}></View>
       <View style={styles.circle}></View>
@@ -41,9 +44,6 @@ function BottomNavigator(){
           <FontAwesomeIcon name="user" style={{ ...styles.icon, right:20, color:coloricons}} />
         </View>
       </View>
-      <Pressable onPress={handlePress} style={styles.scannerbutton}>
-          <IonIcon name='scan' style={{fontSize: 25}}/>
-      </Pressable>
     </View>
   );
 }
