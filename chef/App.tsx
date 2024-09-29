@@ -9,6 +9,7 @@ import * as Font from 'expo-font';
 import { Scanner } from "./components/scanner";
 import { BottomNavigator } from "./components/bottomnavigator";
 
+//start here
 //const textArray = ['Burning Calories','Synthesizing Proteins','Improving Nutrition', 'Optimizing Diet'];
 const textArray = [];
 
